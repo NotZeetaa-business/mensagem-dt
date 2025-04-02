@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Um Pedido Especial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #6a1b9a, #8e24aa);
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            padding: 2rem;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .message {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+
+        .button {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background-color: #ffd700;
+            color: #6a1b9a;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 1rem;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .proposta {
+            font-size: 2rem;
+            margin-top: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        .decoracao {
+            position: fixed;
+            pointer-events: none;
+            animation: float 3s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        footer {
+            margin-top: 3rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+</head>
+<body>
+    <div class="container">
+        <h1>À nossa querida Professora Ana Catarina Costa</h1>
+        
+        <div class="message">
+            <p>Cara Professora,</p>
+            <p>Nos três anos em que foi nossa Diretora de Turma, aprendemos muito mais do que simples matérias escolares. Mostrou-nos o verdadeiro significado da dedicação, da compreensão e da resiliência.</p>
+            <p>Admiramos profundamente a forma como se dedica a cada aluno, a capacidade de transformar dificuldades em momentos de crescimento e o entusiasmo que coloca em cada dia letivo.</p>
+            <p>Por tudo isto e muito mais, temos um pedido especial para lhe fazer...</p>
+        </div>
+
+        <button class="button" onclick="revealProposal()">Clique para ver o pedido</button>
+
+        <div id="proposta" class="hidden">
+            <div class="proposta">
+                🌟💖 Aceita ser a nossa Madrinha do Baile de Finalistas? 💖🌟
+            </div>
+            <div style="margin-top: 2rem;">
+                <button class="button" onclick="showAnswer('sim')">SIM</button>
+                <button class="button" onclick="showAnswer('sim')">SIM</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Com carinho de seus alunos 12º J ❤️
+    </footer>
+
+    <script>
+        function revealProposal() {
+            document.getElementById('proposta').classList.remove('hidden');
+            createDecoration();
+        }
+
+        function showAnswer(answer) {
+            alert(answer === 'sim' 
+                ? "🎉🎉 OBRIGADA! Será uma honra tê-la como nossa madrinha! 🎉🎉" 
+                : "😉 Sabíamos que aceitaria! Estamos cheios de expectativa!");
+        }
+
+        function createDecoration() {
+            const emojis = ['🎉', '💖', '🌟', '🎊', '✨'];
+            for (let i = 0; i < 20; i++) {
+                const decor = document.createElement('div');
+                decor.className = 'decoracao';
+                decor.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                decor.style.left = Math.random() * 100 + 'vw';
+                decor.style.top = Math.random() * 100 + 'vh';
+                decor.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(decor);
+            }
+        }
+    </script>
+</body>
+</html>
