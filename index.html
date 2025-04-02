@@ -90,6 +90,10 @@
             margin-top: 3rem;
             opacity: 0.8;
         }
+        #naoButton {
+            transition: all 0.5s ease;
+            position: static;
+        }
     </style>
 </head>
 </head>
@@ -99,7 +103,7 @@
         
         <div class="message">
             <p>Cara Professora,</p>
-            <p>Nos três anos em que foi nossa Diretora de Turma, aprendemos muito mais do que simples matérias escolares. Mostrou-nos o verdadeiro significado da dedicação, da compreensão e da resiliência.</p>
+            <p>Nos três anos em que foi nossa Diretora de Turma, aprendemos muito mais do que simples matérias. Mostrou-nos o verdadeiro significado da dedicação, da compreensão e da resiliência.</p>
             <p>Admiramos profundamente a forma como se dedica a cada aluno, a capacidade de transformar dificuldades em momentos de crescimento e o entusiasmo que coloca em cada dia letivo.</p>
             <p>Por tudo isto e muito mais, temos um pedido especial para lhe fazer...</p>
         </div>
@@ -110,9 +114,9 @@
             <div class="proposta">
                 🌟💖 Aceita ser a nossa Madrinha do Baile de Finalistas? 💖🌟
             </div>
-            <div style="margin-top: 2rem;">
+            <div style="margin-top: 2rem; position: relative;">
                 <button class="button" onclick="showAnswer('sim')">SIM</button>
-                <button class="button" onclick="showAnswer('sim')">SIM</button>
+                <button class="button" id="naoButton" onclick="fugirDoNao()">NÃO</button>
             </div>
         </div>
     </div>
@@ -122,6 +126,40 @@
     </footer>
 
     <script>
+        function fugirDoNao() {
+            const naoBtn = document.getElementById('naoButton');
+            // Desativa temporariamente o botão
+            naoBtn.style.pointerEvents = 'none';
+            
+            // Efeito visual de desaparecer
+            naoBtn.style.opacity = '0';
+            
+            setTimeout(() => {
+                // Nova posição aleatória
+                const x = Math.random() * (window.innerWidth - 100);
+                const y = Math.random() * (window.innerHeight - 50);
+                
+                naoBtn.style.position = 'fixed';
+                naoBtn.style.left = x + 'px';
+                naoBtn.style.top = y + 'px';
+                naoBtn.style.opacity = '1';
+                
+                // Reativa o botão após posicionamento
+                naoBtn.style.pointerEvents = 'auto';
+            }, 300);
+        }
+
+        function showAnswer(answer) {
+            if (answer === 'sim') {
+                // Parar todos os efeitos do NÃO
+                const naoBtn = document.getElementById('naoButton');
+                naoBtn.style.position = 'static';
+                naoBtn.style.left = 'auto';
+                naoBtn.style.top = 'auto';
+                
+                alert("🎉🎉 OBRIGADA! Será uma honra tê-la como nossa madrinha! 🎉🎉");
+            }
+        }
         function revealProposal() {
             document.getElementById('proposta').classList.remove('hidden');
             createDecoration();
