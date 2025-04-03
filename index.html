@@ -161,6 +161,80 @@
         .visible {
             display: block;
         }
+
+        @media (max-width: 768px) {
+            .carta-container {
+                width: 95%;
+                padding: 20px 15px;
+                margin: 10px;
+                transform: rotate(-0.5deg);
+            }
+
+            h1 {
+                font-size: 2rem;
+                padding-bottom: 10px;
+                margin-bottom: 15px;
+            }
+
+            .message {
+                font-size: 1.4rem;
+                line-height: 1.6;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+
+            .proposta {
+                font-size: 1.8rem;
+                padding: 15px;
+                margin: 20px 0;
+            }
+
+            .button {
+                padding: 10px 20px;
+                font-size: 1.2rem;
+                margin: 8px;
+                width: 100%;
+            }
+
+            footer {
+                font-size: 1.2rem;
+                margin-top: 20px;
+            }
+
+            #proposta div {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .message p {
+                margin: 0.8em 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .message {
+                font-size: 1.2rem;
+            }
+
+            .proposta {
+                font-size: 1.5rem;
+                padding: 10px;
+            }
+
+            .button {
+                font-size: 1.1rem;
+                padding: 8px 15px;
+            }
+
+            footer {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -205,26 +279,21 @@
         }
 
         function fugirDoNao() {
-    const naoBtn = document.getElementById('naoButton');
-    const btnRect = naoBtn.getBoundingClientRect();
+            const naoBtn = document.getElementById('naoButton');
+            const btnRect = naoBtn.getBoundingClientRect();
+            
+            // Ajuste para mobile
+            const maxX = window.innerWidth - btnRect.width - 20; // Margem de segurança
+            const maxY = window.innerHeight - btnRect.height - 20;
+            
+            const x = Math.max(10, Math.min(maxX, Math.random() * maxX));
+            const y = Math.max(10, Math.min(maxY, Math.random() * maxY));
 
-    // Tamanhos da janela de visualização
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-
-    // Calcula os limites máximos para a nova posição
-    const maxX = viewportWidth - btnRect.width;
-    const maxY = viewportHeight - btnRect.height;
-
-    // Gera novas coordenadas aleatórias dentro dos limites
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-
-    // Aplica a nova posição ao botão
-    naoBtn.style.position = 'fixed';
-    naoBtn.style.left = `${x}px`;
-    naoBtn.style.top = `${y}px`;
-}
+            naoBtn.style.position = 'fixed';
+            naoBtn.style.left = `${x}px`;
+            naoBtn.style.top = `${y}px`;
+            naoBtn.style.transform = `rotate(${Math.random() * 15 - 7.5}deg)`;
+        }
 
 
 
